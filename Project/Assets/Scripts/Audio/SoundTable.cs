@@ -34,13 +34,21 @@ public struct SoundConfig
     public float maxIntensity;
 }
 
+[ExecuteAlways]
 public class SoundTable : MonoBehaviour
 {
-    public AudioSource audioPrefab;
+    private AudioSource audioPrefab;
     public EventConfig[] events;
+
+    private void Update()
+    {
+        if(audioPrefab == null)
+            audioPrefab = Resources.Load<AudioSource>("Spawned Sound");
+    }
 
     private void Start()
     {
+        audioPrefab = Resources.Load<AudioSource>("Spawned Sound");
         foreach(EventConfig eventConfig in events)
         {
             EventInvocationData invocationData = eventConfig.invocationData;
