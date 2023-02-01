@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 3830238865132771069}
   - component: {fileID: 9110208495407490336}
   - component: {fileID: 7290990701087977585}
+  - component: {fileID: 83288936726473345}
+  - component: {fileID: 771096199582607942}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Character Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5e42e8ecf1cb9a14ead5c18f8f53b88a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +103,38 @@ MonoBehaviour:
   animList: {fileID: 11400000, guid: 426f2d5790b2b0640b63b44d738b14d1, type: 2}
   animIndex: 0
   loopAnim: 1
+--- !u!114 &83288936726473345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265623841382099829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66cab6aad2483f438dc416475fcf0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopAnims: []
+  effects: []
+  meshRenderers:
+  - {fileID: 9110208495407490336}
+  additionalShaderParam: _DamageEffectIntensity
+  positions: []
+--- !u!114 &771096199582607942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265623841382099829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90f0139cd38d2b48b69766c8ebb9a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 11400000, guid: 287d68673b9552f429a00faef508cbf8, type: 2}
+  impactPointFXPrefab: {fileID: 7516999553178907506, guid: 271198244ae4ab346b2ec61f690b9402, type: 3}
 --- !u!1 &5551887616459823618
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 11400000, guid: 287d68673b9552f429a00faef508cbf8, type: 2}
+  impactPointFXPrefab: {fileID: 0}
 --- !u!114 &6749230648788480083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e1d1916e38ed34185fcc47bef086ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 1
   health: 10
   changePerSecond: 0
   maxHealth: 10

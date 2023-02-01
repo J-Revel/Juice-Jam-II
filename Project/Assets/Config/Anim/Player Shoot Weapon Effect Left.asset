@@ -16,7 +16,7 @@ MonoBehaviour:
   - additionalParamValue: 0
     translation: {x: 0, y: 0.05, z: 0}
     scale: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: -5}
+    rotation: {x: 0, y: 0, z: -7}
     rotationOffset: 0
     intensityCurve:
       serializedVersion: 2

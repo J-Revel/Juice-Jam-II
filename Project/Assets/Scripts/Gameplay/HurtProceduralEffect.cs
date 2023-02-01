@@ -8,6 +8,7 @@ public class HurtProceduralEffect : MonoBehaviour
     private Health health;
     private ProceduralAnimationHandler procAnimHandler;
     public ProceduralEffect effect;
+    public Transform impactPointFXPrefab;
     
     void Start()
     {
@@ -16,8 +17,10 @@ public class HurtProceduralEffect : MonoBehaviour
         health.hurtDelegate += OnHurt;
     }
 
-    void OnHurt()
+    void OnHurt(Ray damageRay)
     {
         procAnimHandler.AddEffect(effect);
+        if(impactPointFXPrefab != null)
+            Instantiate(impactPointFXPrefab, damageRay.origin, Quaternion.LookRotation(damageRay.direction));
     }
 }

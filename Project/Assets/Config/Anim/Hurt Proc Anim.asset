@@ -15,31 +15,60 @@ MonoBehaviour:
   effects:
   - additionalParamValue: 1
     translation: {x: 0, y: 0, z: 0}
-    scale: {x: 0.2, y: 0.2, z: 0.2}
+    scale: {x: -0.2, y: 0, z: -0.2}
     rotation: {x: 0, y: 0, z: 0}
     rotationOffset: 0
     intensityCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
+        time: 0.0008544922
         value: 1
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 34
+        inSlope: -2.94783
+        outSlope: -2.94783
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.33333334
+        outWeight: 0.023931103
       - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 34
+        time: 1.0000005
+        value: 0.0014684288
+        inSlope: -0
+        outSlope: -0
+        tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0.06575623
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-  animDuration: 0.25
+  - additionalParamValue: 1
+    translation: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: -0.2, z: 0}
+    rotation: {x: 0, y: 0, z: 0}
+    rotationOffset: 0.5
+    intensityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0008544922
+        value: 1
+        inSlope: -2.94783
+        outSlope: -2.94783
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.023931103
+      - serializedVersion: 3
+        time: 1.0000005
+        value: 0.0014684288
+        inSlope: -0
+        outSlope: -0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.06575623
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+  animDuration: 0.5

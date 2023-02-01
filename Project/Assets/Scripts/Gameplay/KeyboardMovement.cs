@@ -38,7 +38,7 @@ public class KeyboardMovement : MonoBehaviour
         dashAction.Enable();
         shootAction.Enable();
         health = GetComponent<Health>();
-        health.hurtDelegate += () => {hurtEffect.Play();};
+        health.hurtDelegate += (Ray ray) => {hurtEffect.Play();};
     }
 
     void Update()

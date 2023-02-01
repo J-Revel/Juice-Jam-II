@@ -26,7 +26,7 @@ public class RaycastProjectile : MonoBehaviour
             Health health = hit.collider.GetComponentInParent<Health>() ;
             if(health != null)
             {
-                health.OnDamageTaken(damage);
+                health.OnDamageTaken(damage, new Ray(hit.point, transform.forward));
             }
             Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal), hit.collider.transform);
         }

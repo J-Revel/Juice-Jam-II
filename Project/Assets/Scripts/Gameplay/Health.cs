@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     public float maxHealth;
     private float initialMaxHealth;
     public GameObject deathFXPrefab;
-    public System.Action hurtDelegate;
+    public System.Action<Ray> hurtDelegate;
     public List<DamageType> immunities = new List<DamageType>();
     public System.Action deathDelegate;
     public float invincibilityDuration = 0;
@@ -34,7 +34,7 @@ public class Health : MonoBehaviour
         
     }
 
-    public bool OnDamageTaken(float damage)
+    public bool OnDamageTaken(float damage, Ray damageRay = new Ray())
     {
         if(invincibilityTime <= 0)
         {
@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
                 deathDelegate?.Invoke();
             }
             else
-                hurtDelegate?.Invoke();
+                hurtDelegate?.Invoke(damageRay);
             return true;
         }
         else
