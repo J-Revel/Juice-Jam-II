@@ -11,6 +11,8 @@ public class KeyboardMovement : MonoBehaviour
     public InputAction shootAction;
     private MovementController movementController;
     public Transform weaponTransform;
+    public Transform weaponDirectionTransform;
+    private Quaternion initialWeaponRotation;
     public Transform projectileSpawnPos;
     public LayerMask pointerRaycastLayerMask;
     private Vector3 lastInputDirection;
@@ -29,6 +31,9 @@ public class KeyboardMovement : MonoBehaviour
     public ProceduralEffect shootProceduralEffectRight;
     public ProceduralEffect shootProceduralEffectLeft;
     public ScreenshakeEffect shootScreenshakeEffect;
+    public float spriteAngle = 30;
+    public Vector3 raycastOffset;
+    
 
     void Start()
     {
@@ -39,6 +44,7 @@ public class KeyboardMovement : MonoBehaviour
         shootAction.Enable();
         health = GetComponent<Health>();
         health.hurtDelegate += (Ray ray) => {hurtEffect.Play();};
+        initialWeaponRotation = weaponDirectionTransform.localRotation;
     }
 
     void Update()
@@ -54,16 +60,25 @@ public class KeyboardMovement : MonoBehaviour
         }
 
         animatedSprite.SelectAnim(movementController.inputDirection != Vector3.zero ? "Run" : "Idle");
-        animatedSprite.flipX = shootDirection.x < 0;
-        weaponSprite.flipX = shootDirection.x < 0;
 
         if(dashAction.WasPressedThisFrame())
         {
             movementController.Dash(lastInputDirection);
         }
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        weaponTransform.localRotation = Quaternion.AngleAxis(shootDirection.x * 90, Vector3.up);
-        projectileSpawnPos.rotation = Quaternion.LookRotation(shootDirection, Vector3.up);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit, 100, pointerRaycastLayerMask))
+        {
+            Vector3 targetDirection = hit.point + raycastOffset - weaponDirectionTransform.position;
+            targetDirection.y = 0;
+            targetDirection = targetDirection.normalized;
+            weaponDirectionTransform.localRotation = Quaternion.LookRotation(targetDirection, Vector3.up) * Quaternion.AngleAxis((targetDirection.x > 0 ? -90:90), Vector3.up) * Quaternion.AngleAxis(Mathf.Lerp(90, 45, Mathf.Abs(targetDirection.x)), Vector3.right);
+            shootDirection = targetDirection;
+            weaponTransform.localRotation = Quaternion.AngleAxis(targetDirection.x < 0 ? -90:90, Vector3.up);
+            projectileSpawnPos.rotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+        }
+        animatedSprite.flipX = shootDirection.x < 0;
+        weaponSprite.flipX = shootDirection.x < 0;
         shootTime -= Time.deltaTime;
         if(shootAction.IsPressed() && shootTime <= 0)
         {
@@ -73,7 +88,7 @@ public class KeyboardMovement : MonoBehaviour
                 weaponProceduralAnimHandler.AddEffect(shootProceduralEffectRight);
             else
                 weaponProceduralAnimHandler.AddEffect(shootProceduralEffectLeft);
-            Instantiate(projectilePrefab, projectileSpawnPos.position, projectileSpawnPos.rotation * Quaternion.AngleAxis(Random.Range(-shootPrecision, shootPrecision), Random.insideUnitSphere));
+            Instantiate(projectilePrefab, projectileSpawnPos.position + (Quaternion.AngleAxis(spriteAngle, Vector3.right) * Vector3.up - Vector3.up) * projectileSpawnPos.position.y, projectileSpawnPos.rotation * Quaternion.AngleAxis(Random.Range(-shootPrecision, shootPrecision), Random.insideUnitSphere));
         }
         movementController.speedMultiplier = shootAction.IsPressed() ? shootingMovementSlowdown : 1;
     }
