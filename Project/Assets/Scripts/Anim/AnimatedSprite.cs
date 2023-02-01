@@ -10,6 +10,8 @@ public class AnimatedSprite : MonoBehaviour
     private float time;
     private int frameIndex = 0;
     public bool loopAnim = true;
+    public bool flipX { get { return spriteRenderer.flipX; } set { spriteRenderer.flipX = value; }}
+    public bool flipY { get { return spriteRenderer.flipY; } set { spriteRenderer.flipY = value; }}
 
     void Start()
     {

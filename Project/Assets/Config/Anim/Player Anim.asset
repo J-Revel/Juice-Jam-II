@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13426e9ead40efb40b3fde96cfad97aa, type: 3}
+  m_Name: Player Anim
+  m_EditorClassIdentifier: 
+  spriteAnims:
+  - name: Idle
+    spriteAnim:
+      sprites:
+      - {fileID: -916671205, guid: bb869c0d667591244947a49aa7a39ba2, type: 3}
+      - {fileID: 491038795, guid: bb869c0d667591244947a49aa7a39ba2, type: 3}
+      - {fileID: -1387529757, guid: bb869c0d667591244947a49aa7a39ba2, type: 3}
+      actionPoints: []
+      framePerSecond: 8
+      loop: 1
+  - name: Run
+    spriteAnim:
+      sprites:
+      - {fileID: 1948754316, guid: bb869c0d667591244947a49aa7a39ba2, type: 3}
+      - {fileID: 840764740, guid: bb869c0d667591244947a49aa7a39ba2, type: 3}
+      - {fileID: 110997889, guid: bb869c0d667591244947a49aa7a39ba2, type: 3}
+      actionPoints: []
+      framePerSecond: 8
+      loop: 1
+  actionPointNames: []

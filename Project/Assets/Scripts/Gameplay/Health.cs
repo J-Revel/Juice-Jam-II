@@ -10,6 +10,7 @@ public enum DamageType
 
 public class Health : MonoBehaviour
 {
+    public Team team = Team.Enemy;
     public float health = 10f;
     public float changePerSecond = 0;
     public float maxHealth;

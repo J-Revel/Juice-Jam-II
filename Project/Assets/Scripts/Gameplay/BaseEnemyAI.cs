@@ -21,6 +21,8 @@ public class BaseEnemyAI : MonoBehaviour
     public float pathRecalculateDistance = 2;
     private Vector3 lastTargetPos;
     private Vector3 currentPathDirection;
+    public LayerMask viewRaycastLayer;
+    public AnimatedSprite animatedSprite;
 
 
     void Start()
@@ -60,6 +62,7 @@ public class BaseEnemyAI : MonoBehaviour
                 currentPathDirection = path.corners[0] - transform.position;
         }
         Vector3 direction = targetPos - transform.position;
+        animatedSprite.flipX = direction.x > 0;
         if(path != null && path.corners != null && pathCursor < path.corners.Length)
         {
             Debug.DrawLine(path.corners[pathCursor], transform.position, Color.red, 0);
@@ -77,7 +80,8 @@ public class BaseEnemyAI : MonoBehaviour
             else direction = targetPos - transform.position;
         }
         Vector3 targetDirection = target.position - transform.position;
-        if(targetDirection.sqrMagnitude > range * range)
+        targetDirection.y = 0;
+        if(targetDirection.sqrMagnitude > range * range || Physics.Raycast(transform.position, targetDirection, targetDirection.magnitude, viewRaycastLayer))
         {
             movement.inputDirection = direction.normalized;
         }
@@ -88,7 +92,7 @@ public class BaseEnemyAI : MonoBehaviour
             if(shootTime > shootInterval)
             {
                 shootTime -= shootInterval;
-                Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(targetDirection));
+                Instantiate(projectilePrefab, weaponTransform.position, Quaternion.LookRotation(targetDirection));
             }
         }
     }

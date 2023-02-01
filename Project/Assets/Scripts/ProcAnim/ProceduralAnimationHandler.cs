@@ -23,7 +23,7 @@ public class ProceduralAnimationHandler : MonoBehaviour
 {
     public List<ProceduralAnimData> loopAnims = new List<ProceduralAnimData>();
     public List<ProceduralEffectData> effects = new List<ProceduralEffectData>();
-    public MeshRenderer[] meshRenderers;
+    public Renderer[] meshRenderers;
     private MaterialPropertyBlock[] propertyBlocks;
     public string additionalShaderParam;
     private Vector3 startPosition;
@@ -39,8 +39,8 @@ public class ProceduralAnimationHandler : MonoBehaviour
         startRotation = transform.localRotation;
         if(meshRenderers.Length == 0)
         {
-            meshRenderers = new MeshRenderer[1];
-            meshRenderers[0] = GetComponent<MeshRenderer>();
+            meshRenderers = new Renderer[1];
+            meshRenderers[0] = GetComponent<Renderer>();
         }
         propertyBlocks = new MaterialPropertyBlock[meshRenderers.Length];
         for(int i=0; i<meshRenderers.Length; i++)
