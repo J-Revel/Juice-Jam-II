@@ -20,6 +20,7 @@ public class KeyboardMovement : MonoBehaviour
     public float shootInterval = 0.1f;
     public float shootTime = 0;
     public float shootPrecision = 5;
+    public float verticalPrecision = 2;
     public Transform projectilePrefab;
     private Vector3 shootDirection = Vector3.right;
     public float shootingMovementSlowdown = 0.5f;
@@ -33,6 +34,7 @@ public class KeyboardMovement : MonoBehaviour
     public ScreenshakeEffect shootScreenshakeEffect;
     public float spriteAngle = 30;
     public Vector3 raycastOffset;
+    public AnimationCurve weaponScaleAdjustCurve;
     
 
     void Start()
@@ -76,6 +78,7 @@ public class KeyboardMovement : MonoBehaviour
             shootDirection = targetDirection;
             weaponTransform.localRotation = Quaternion.AngleAxis(targetDirection.x < 0 ? -90:90, Vector3.up);
             projectileSpawnPos.rotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+            weaponDirectionTransform.localScale = weaponScaleAdjustCurve.Evaluate(Mathf.Abs(targetDirection.z)) * Vector3.one;
         }
         animatedSprite.flipX = shootDirection.x < 0;
         weaponSprite.flipX = shootDirection.x < 0;
@@ -88,7 +91,7 @@ public class KeyboardMovement : MonoBehaviour
                 weaponProceduralAnimHandler.AddEffect(shootProceduralEffectRight);
             else
                 weaponProceduralAnimHandler.AddEffect(shootProceduralEffectLeft);
-            Instantiate(projectilePrefab, projectileSpawnPos.position + (Quaternion.AngleAxis(spriteAngle, Vector3.right) * Vector3.up - Vector3.up) * projectileSpawnPos.position.y, projectileSpawnPos.rotation * Quaternion.AngleAxis(Random.Range(-shootPrecision, shootPrecision), Random.insideUnitSphere));
+            Instantiate(projectilePrefab, projectileSpawnPos.position + (Quaternion.AngleAxis(spriteAngle, Vector3.right) * Vector3.up - Vector3.up) * projectileSpawnPos.position.y, projectileSpawnPos.rotation * Quaternion.AngleAxis(Random.Range(-shootPrecision, shootPrecision), Vector3.up) * Quaternion.AngleAxis(Random.Range(-verticalPrecision, verticalPrecision), transform.right));
         }
         movementController.speedMultiplier = shootAction.IsPressed() ? shootingMovementSlowdown : 1;
     }

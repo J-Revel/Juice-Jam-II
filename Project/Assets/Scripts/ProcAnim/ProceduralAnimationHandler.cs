@@ -68,6 +68,13 @@ public class ProceduralAnimationHandler : MonoBehaviour
 
     public ProceduralEffectData AddEffect(ProceduralEffect effect, float speed = 1)
     {
+        for(int i=effects.Count-1; i>=0; i--)
+        {
+            if(effects[i].config == effect)
+            {
+                effects.RemoveAt(i);
+            }
+        }
         ProceduralEffectData result = new ProceduralEffectData();
         result.config = effect;
         result.animSpeed = speed;
@@ -90,6 +97,9 @@ public class ProceduralAnimationHandler : MonoBehaviour
                 }
             }
         }
+        bool hasTranslation = false;
+        bool hasRotation = false;
+        bool hasScale = false;
         Vector3 translation = Vector3.zero;
         Vector3 rotation = Vector3.zero;
         Vector3 scale = Vector3.one;
@@ -102,8 +112,14 @@ public class ProceduralAnimationHandler : MonoBehaviour
                 anim.time += Time.deltaTime * anim.animSpeed;
                 float f = Mathf.Sin((anim.time / anim.config.animDuration + animConfig.offsetRatio) * 2 * Mathf.PI);
                 translation += (animConfig.translationOffset + f) * animConfig.translation * anim.intensity;
+                if(animConfig.translation != Vector3.zero)
+                    hasTranslation = true;
                 rotation += (animConfig.rotationOffset + f) * animConfig.rotation * anim.intensity;
+                if(animConfig.rotation != Vector3.zero)
+                    hasRotation = true;
                 scale = Vector3.Scale(scale, Vector3.one + (animConfig.scaleOffset + f) * animConfig.scale * anim.intensity);
+                if(animConfig.scale != Vector3.zero)
+                    hasScale = true;
                 additionalValue += animConfig.additionalParamValue * f * anim.intensity;
                 colorWeightSum += f * anim.intensity;
             }
@@ -115,8 +131,14 @@ public class ProceduralAnimationHandler : MonoBehaviour
                 effect.time += Time.deltaTime * effect.animSpeed;
                 float f = effectConfig.intensityCurve.Evaluate(effect.time / effect.config.animDuration);
                 translation += f * effectConfig.translation;
+                if(effectConfig.translation != Vector3.zero)
+                    hasTranslation = true;
                 rotation += f * effectConfig.rotation;
+                if(effectConfig.rotation != Vector3.zero)
+                    hasRotation = true;
                 scale = Vector3.Scale(scale, Vector3.one + f * effectConfig.scale);
+                if(effectConfig.scale != Vector3.zero)
+                    hasScale = true;
                 additionalValue += effectConfig.additionalParamValue * f;
                 colorWeightSum += f;
             }
@@ -126,9 +148,12 @@ public class ProceduralAnimationHandler : MonoBehaviour
             if(effects[i].time >= effects[i].config.animDuration)
                 effects.RemoveAt(i);
         }
-        transform.localPosition = startPosition + translation;
-        transform.localRotation = startRotation * Quaternion.Euler(rotation.x, rotation.y, rotation.z);
-        transform.localScale = Vector3.Scale(startScale, scale);
+        if(hasTranslation)
+            transform.localPosition = startPosition + translation;
+        if(hasRotation)
+            transform.localRotation = startRotation * Quaternion.Euler(rotation.x, rotation.y, rotation.z);
+        if(hasScale)
+            transform.localScale = Vector3.Scale(startScale, scale);
 
         for(int i=0; i<meshRenderers.Length; i++)
         {

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c292dcb36b791f44cb7e1dafbbab4c7d, type: 3}
   m_Name: Player Shoot Weapon Effect Right
   m_EditorClassIdentifier: 
+  id: 
   effects:
   - additionalParamValue: 0
-    translation: {x: 0, y: 0.05, z: 0}
-    scale: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 7}
+    translation: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: -0.1, z: 0}
+    rotation: {x: 0, y: 0, z: 5}
     rotationOffset: 0
     intensityCurve:
       serializedVersion: 2
@@ -42,4 +43,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
-  animDuration: 0.3
+  animDuration: 0.1

@@ -16,6 +16,7 @@ public class ProceduralEffectConfig
 [CreateAssetMenu(fileName = "New Procedural Effect", menuName = "ScriptableObjects/Procedural Effect")]
 public class ProceduralEffect : ScriptableObject
 {
+    public string id;
     public ProceduralEffectConfig[] effects;
     public float animDuration;
 }
