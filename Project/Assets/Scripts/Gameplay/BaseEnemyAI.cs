@@ -23,6 +23,7 @@ public class BaseEnemyAI : MonoBehaviour
     private Vector3 currentPathDirection;
     public LayerMask viewRaycastLayer;
     public AnimatedSprite animatedSprite;
+    public StatEvaluator recoilIntensity;
 
 
     void Start()
@@ -31,6 +32,10 @@ public class BaseEnemyAI : MonoBehaviour
         queryFilter.areaMask = NavMesh.AllAreas;
         queryFilter.SetAreaCost(0, 1);
         queryFilter.SetAreaCost(1, 10);
+        Health health = GetComponent<Health>();
+        health.hurtDelegate += (Ray hitDirectionRay) => {
+            transform.position += hitDirectionRay.direction.normalized * recoilIntensity.value;
+        };
     }
 
     void Update()

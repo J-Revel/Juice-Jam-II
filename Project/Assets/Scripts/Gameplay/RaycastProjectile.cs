@@ -10,7 +10,10 @@ public class RaycastProjectile : MonoBehaviour
     public float range = 10;
     public float animDuration = 0.3f;
     public Transform impactPrefab;
-    public float damage = 1;
+    public Transform bouncePrefab;
+    public StatEvaluator damage;
+    public StatEvaluator bounceCount;
+    public int bounceIndex = 0;
 
     IEnumerator Start()
     {
@@ -26,9 +29,20 @@ public class RaycastProjectile : MonoBehaviour
             Health health = hit.collider.GetComponentInParent<Health>() ;
             if(health != null)
             {
-                health.OnDamageTaken(damage, new Ray(hit.point, transform.forward));
+                health.OnDamageTaken(damage.value, new Ray(hit.point, transform.forward));
             }
             Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal), hit.collider.transform);
+            Vector3 normalDirection = Vector3.Project(transform.forward, hit.normal);
+            Vector3 tangentDirection = transform.forward - normalDirection;
+            if(bounceCount.value > bounceIndex)
+            {
+                Vector3 bounceDirection = tangentDirection - normalDirection;
+                bounceDirection.y = 0;
+                bounceDirection.Normalize();
+                RaycastProjectile bounce = Instantiate(bouncePrefab, hit.point, Quaternion.LookRotation(bounceDirection), transform.parent).GetComponent<RaycastProjectile>();
+                bounce.bounceIndex = bounceIndex + 1;
+            }
+            Debug.DrawLine(hit.point, hit.point + (tangentDirection - normalDirection) * 5, Color.green, 5);
         }
         else 
             lineRenderer.SetPosition(1, transform.position + transform.forward * range);

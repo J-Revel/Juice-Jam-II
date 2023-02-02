@@ -10,7 +10,7 @@ public enum Team {
 public class DamageBox : MonoBehaviour
 {
     public Team team;
-    public float damage;
+    public StatEvaluator damage;
     
     void Start()
     {
@@ -22,7 +22,7 @@ public class DamageBox : MonoBehaviour
         Health otherHealth = other.GetComponentInParent<Health>();
         if(otherHealth != null && otherHealth.team != team)
         {
-            otherHealth.OnDamageTaken(damage);
+            otherHealth.OnDamageTaken(damage.value);
         }
     }
 

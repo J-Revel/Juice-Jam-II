@@ -17,9 +17,10 @@ public class KeyboardMovement : MonoBehaviour
     public LayerMask pointerRaycastLayerMask;
     private Vector3 lastInputDirection;
     public float raycastRange = 20;
-    public float shootInterval = 0.1f;
+    public StatEvaluator shootInterval;
     public float shootTime = 0;
-    public float shootPrecision = 5;
+    public StatEvaluator shootPrecision;
+    public StatEvaluator projectilePerShot;
     public float verticalPrecision = 2;
     public Transform projectilePrefab;
     private Vector3 shootDirection = Vector3.right;
@@ -85,13 +86,14 @@ public class KeyboardMovement : MonoBehaviour
         shootTime -= Time.deltaTime;
         if(shootAction.IsPressed() && shootTime <= 0)
         {
-            shootTime = shootInterval;
+            shootTime = shootInterval.value;
             ScreenshakeHandler.instance.activeEffects.Add(new ScreenshakeEffect(shootScreenshakeEffect));
             if(shootDirection.x > 0)
                 weaponProceduralAnimHandler.AddEffect(shootProceduralEffectRight);
             else
                 weaponProceduralAnimHandler.AddEffect(shootProceduralEffectLeft);
-            Instantiate(projectilePrefab, projectileSpawnPos.position + (Quaternion.AngleAxis(spriteAngle, Vector3.right) * Vector3.up - Vector3.up) * projectileSpawnPos.position.y, projectileSpawnPos.rotation * Quaternion.AngleAxis(Random.Range(-shootPrecision, shootPrecision), Vector3.up) * Quaternion.AngleAxis(Random.Range(-verticalPrecision, verticalPrecision), transform.right));
+            for(int i=0; i<projectilePerShot.value; i++)
+                Instantiate(projectilePrefab, projectileSpawnPos.position + (Quaternion.AngleAxis(spriteAngle, Vector3.right) * Vector3.up - Vector3.up) * projectileSpawnPos.position.y, projectileSpawnPos.rotation * Quaternion.AngleAxis(Random.Range(-shootPrecision.value, shootPrecision.value), Vector3.up) * Quaternion.AngleAxis(Random.Range(-verticalPrecision, verticalPrecision), transform.right));
         }
         movementController.speedMultiplier = shootAction.IsPressed() ? shootingMovementSlowdown : 1;
     }

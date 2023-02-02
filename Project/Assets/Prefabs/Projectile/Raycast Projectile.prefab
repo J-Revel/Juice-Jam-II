@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 1432847418271434728}
   - component: {fileID: 1432847418271434731}
   - component: {fileID: 3508928252408957887}
-  - component: {fileID: 1500334202357716501}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Raycast Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,20 +151,12 @@ MonoBehaviour:
   range: 15
   animDuration: 0.3
   impactPrefab: {fileID: 2117631294828649767, guid: f943b404fd8a13e45be694a0c7227cb1, type: 3}
-  damage: 1
---- !u!114 &1500334202357716501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432847418271434730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542cf1aecaab1ad4fa077bfd66a03f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
+  bouncePrefab: {fileID: 5194304066705055563, guid: 3464bdbe417eb144597082c809d4f331, type: 3}
+  damage:
+    defaultValue: 1
+    category: {fileID: 11400000, guid: 441e86577b325a047abde5fe8c952379, type: 2}
+    type: 0
+  bounceCount: 1
 --- !u!1 &1632485340207956831
 GameObject:
   m_ObjectHideFlags: 0

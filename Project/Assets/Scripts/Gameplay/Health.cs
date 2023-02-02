@@ -40,13 +40,12 @@ public class Health : MonoBehaviour
         {
             invincibilityTime = invincibilityDuration;
             health -= damage;
+            hurtDelegate?.Invoke(damageRay);
             if(health < 0)
             {
                 health = 0;
                 deathDelegate?.Invoke();
             }
-            else
-                hurtDelegate?.Invoke(damageRay);
             return true;
         }
         else

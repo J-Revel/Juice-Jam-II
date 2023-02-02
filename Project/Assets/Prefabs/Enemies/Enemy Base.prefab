@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7290990701087977585}
   - component: {fileID: 83288936726473345}
   - component: {fileID: 771096199582607942}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3922638152592809732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 6749230648788480082}
   - component: {fileID: 6749230648788480081}
   - component: {fileID: 6749230648788480083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 6749230649496249751}
   - component: {fileID: 6749230649496249745}
   - component: {fileID: 6411869564619217795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,6 +387,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animatedSprite: {fileID: 7290990701087977585}
+  recoilIntensity:
+    defaultValue: 1
+    category: {fileID: 11400000, guid: 079ae3ab34a83d14a97f6a284c1e52a9, type: 2}
+    type: 0
 --- !u!114 &6749230649496249751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,9 +404,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  health: 10
+  health: 5
   changePerSecond: 0
-  maxHealth: 10
+  maxHealth: 5
   deathFXPrefab: {fileID: 0}
   immunities: 
   invincibilityDuration: 0
