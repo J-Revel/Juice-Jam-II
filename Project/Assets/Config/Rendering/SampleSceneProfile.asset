@@ -128,6 +128,7 @@ MonoBehaviour:
   - {fileID: -5528355868089344293}
   - {fileID: -6046994917149143661}
   - {fileID: 6533427696518842675}
+  - {fileID: 8209763836835027097}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -172,3 +173,23 @@ MonoBehaviour:
   scale:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &8209763836835027097
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d067873696842849954ece2f74997b6, type: 3}
+  m_Name: CustomEffectComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  overlayColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 1, b: 1, a: 1}
+    hdr: 0

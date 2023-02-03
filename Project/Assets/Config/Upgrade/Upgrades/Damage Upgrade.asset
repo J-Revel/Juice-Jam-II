@@ -16,7 +16,7 @@ MonoBehaviour:
   upgradeList:
   - stat: {fileID: 11400000, guid: 441e86577b325a047abde5fe8c952379, type: 2}
     level: 1
-  spriteIcon: {fileID: 0}
-  title: 
+  spriteIcon: {fileID: -1753274716, guid: 2661bc4f383d3544abb5d82a6f2444fd, type: 3}
+  title: More Damage
   description: Increase Bullet Damage
   isReusable: 0

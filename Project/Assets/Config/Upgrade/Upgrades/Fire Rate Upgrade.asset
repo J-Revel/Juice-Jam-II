@@ -16,7 +16,7 @@ MonoBehaviour:
   upgradeList:
   - stat: {fileID: 11400000, guid: 49d07b9ff36e8504b93ad777d616e69b, type: 2}
     level: 1
-  spriteIcon: {fileID: 0}
-  title: 
+  spriteIcon: {fileID: -588480134, guid: 2661bc4f383d3544abb5d82a6f2444fd, type: 3}
+  title: Fire Rate Up
   description: Improves fire rate
   isReusable: 0

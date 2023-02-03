@@ -16,7 +16,7 @@ MonoBehaviour:
   upgradeList:
   - stat: {fileID: 11400000, guid: c244ca4e28529b847a0989f13fced70b, type: 2}
     level: 1
-  spriteIcon: {fileID: 0}
-  title: 
+  spriteIcon: {fileID: -401159864, guid: 2661bc4f383d3544abb5d82a6f2444fd, type: 3}
+  title: Bouncy Bullets
   description: Shots can bounce against obstacles and targets once more before disappearing
   isReusable: 0

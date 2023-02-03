@@ -14,6 +14,7 @@ public class RaycastProjectile : MonoBehaviour
     public StatEvaluator damage;
     public StatEvaluator bounceCount;
     public int bounceIndex = 0;
+    public Team team = Team.Player;
 
     IEnumerator Start()
     {
@@ -27,7 +28,7 @@ public class RaycastProjectile : MonoBehaviour
             lineRenderer.SetPosition(1, hit.point);
             animDuration = animDuration * hit.distance / range;
             Health health = hit.collider.GetComponentInParent<Health>() ;
-            if(health != null)
+            if(health != null && health.team != team)
             {
                 health.OnDamageTaken(damage.value, new Ray(hit.point, transform.forward));
             }

@@ -156,7 +156,12 @@ MonoBehaviour:
     defaultValue: 1
     category: {fileID: 11400000, guid: 441e86577b325a047abde5fe8c952379, type: 2}
     type: 0
-  bounceCount: 1
+  bounceCount:
+    defaultValue: 1
+    category: {fileID: 11400000, guid: c244ca4e28529b847a0989f13fced70b, type: 2}
+    type: 0
+  bounceIndex: 0
+  team: 0
 --- !u!1 &1632485340207956831
 GameObject:
   m_ObjectHideFlags: 0

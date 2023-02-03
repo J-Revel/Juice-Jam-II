@@ -106,15 +106,15 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _High_Height: 1.55
-    - _Low_Height: 0.89
-    - _Metallic: 0.415
+    - _Low_Height: 1.01
+    - _Metallic: 0.33
     - _Normal_Flatten: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.089
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -127,9 +127,9 @@ Material:
     - _Color: {r: 0.3490196, g: 0.26274508, b: 0.4313725, a: 1}
     - _Direction: {r: -0.83, g: 0.5, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighColor: {r: 0.26160273, g: 0.1995817, b: 0.3679245, a: 1}
+    - _HighColor: {r: 0.26875928, g: 0.20999464, b: 0.3679245, a: 1}
     - _Light_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Light_Direction: {r: 5.62, g: 7.96, b: -1, a: 0}
-    - _LowColor: {r: 0.25389218, g: 0.20412071, b: 0.31132078, a: 1}
+    - _LowColor: {r: 0.21744838, g: 0.16131185, b: 0.2735849, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
